@@ -13,6 +13,7 @@ RUN \
 	automake \
 	avahi-dev \
 	bash \
+  bison \
 	bsd-compat-headers \
 	confuse-dev \
 	curl \
