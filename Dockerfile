@@ -23,6 +23,7 @@ RUN \
 	g++ \
 	gcc \
 	gettext-dev \
+  git \
 	gnutls-dev \
 	gperf \
 	json-c-dev \
@@ -68,10 +69,6 @@ RUN \
  export LDFLAGS="-L/tmp/antlr3c-build/usr/lib" && \
  export CFLAGS="-I/tmp/antlr3c-build/usr/include" && \
  echo "**** compile owntone-server ****" && \
- if [ -z ${DAAPD_RELEASE+x} ]; then \
-	DAAPD_RELEASE=$(curl -sX GET "https://api.github.com/repos/owntone/owntone-server/releases/latest" \
-	| awk '/tag_name/{print $4;exit}' FS='[""]'); \
- fi && \
  curl -L https://github.com/mopidy/libspotify-archive/blob/master/libspotify-${LIBSPOTIFY_VERSION}-Linux-${ARCH}-release.tar.gz?raw=true | tar -xzf- -C /tmp/source/ && \
  mv /tmp/source/libspotify* /tmp/source/libspotify && \
  sed -i 's/ldconfig//' /tmp/source/libspotify/Makefile && \
@@ -79,13 +76,10 @@ RUN \
  rm -rf /tmp/source/libspotify && \
  export LIBSPOTIFY_CFLAGS="-I/tmp/libspotify-build/include" && \
  export LIBSPOTIFY_LIBS="/tmp/libspotify-build/lib/libspotify.so" && \
- curl -o \
- /tmp/source/owntone.tar.gz -L \
-	"https://github.com/owntone/owntone-server/archive/${DAAPD_RELEASE}.tar.gz" && \
- tar xf /tmp/source/owntone.tar.gz -C \
-	/tmp/source/owntone --strip-components=1 && \
+ git clone https://github.com/ma-ku/owntone-server.git /tmp/source/owntone && \
  export PATH="/tmp/source:$PATH" && \
  cd /tmp/source/owntone && \
+ git checkout feature/grouping && \
  autoreconf -i -v && \
  ./configure \
 	--build=$CBUILD \
