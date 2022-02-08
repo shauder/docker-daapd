@@ -20,6 +20,7 @@ RUN \
 	ffmpeg-dev \
 	file \
 	flac-dev \
+  flex \
 	g++ \
 	gcc \
 	gettext-dev \
