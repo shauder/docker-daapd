@@ -91,7 +91,6 @@ RUN \
 	--enable-mpd \
   --enable-spotify \
 	--host=$CHOST \
-  --enable-preferairplay2 \
 	--infodir=/usr/share/info \
 	--localstatedir=/var \
 	--mandir=/usr/share/man \
