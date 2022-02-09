@@ -89,7 +89,6 @@ RUN \
 	--enable-itunes \
 	--enable-lastfm \
 	--enable-mpd \
-  --enable-preferairplay2 \
   --enable-spotify \
 	--host=$CHOST \
 	--infodir=/usr/share/info \
