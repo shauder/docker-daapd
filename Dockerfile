@@ -96,7 +96,7 @@ RUN \
 	--mandir=/usr/share/man \
 	--prefix=/usr \
 	--sysconfdir=/etc && \
- make && \
+ make CFLAGS="-DPREFER_AIRPLAY2 -DSPEAKER_GROUPING" && \
  make DESTDIR=/tmp/daapd-build install && \
  mv /tmp/daapd-build/etc/owntone.conf /tmp/daapd-build/etc/owntone.conf.orig
 ############## runtime stage ##############
